@@ -1,23 +1,44 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
+  // On importe de nouveaux composants...
+  IonList, IonItem, IonCheckbox, IonNote, IonLabel, IonBadge,
+  IonFab, IonFabButton, IonIcon
+} from '@ionic/react';
 
-const Home: React.FC = () => {
+// Icon d'ajout utilisé par le composant FabButton
+import { add } from 'ionicons/icons';
+
+// Import du composant Props
+import {RouteComponentProps} from 'react-router';
+
+const Home: React.FC<RouteComponentProps> = (props) => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Ionic Blank</IonTitle>
+          <IonTitle>DuckNote - React</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
-        The world is your oyster.
-        <p>
-          If you get lost, the{' '}
-          <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/">
-            docs
-          </a>{' '}
-          will be your guide.
-        </p>
+      <IonContent>
+        <IonList>
+          <IonItem>
+            <IonCheckbox slot="start" />
+            <IonLabel>
+              <h1>Projet Ionic</h1>
+              <IonNote>repartir les rôles, démarrer un trello..</IonNote>
+            </IonLabel>
+            <IonBadge color="success" slot="end">
+              2 jours
+            </IonBadge>
+          </IonItem>
+        </IonList>
+
+        <IonFab vertical="bottom" horizontal="end" slot="fixed">
+          <IonFabButton onClick={() => props.history.push('/new')}>
+            <IonIcon icon={add} />
+          </IonFabButton>
+        </IonFab>
+
       </IonContent>
     </IonPage>
   );
